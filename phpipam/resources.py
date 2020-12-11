@@ -29,6 +29,9 @@ class invalidResourceException(Exception):
 class invalidResourceOperationException(Exception):
     pass
 
+class invalidResourceOperationArgumentException(Exception):
+    pass
+
 class phpipamResourceFunction:
     def __init__(self, backend, resource, function):
         if not function in resource_types[resource]:
@@ -37,14 +40,18 @@ class phpipamResourceFunction:
         self._backend = backend
         self._resource = resource
         self._function = resource_types[resource][function]
+        self._name = function
 
     def __call__(self, **kwargs):
         if 'data' in kwargs:
             data = kwargs['data']
         else:
             data = {}
+        try:
+            return self._backend.request( self._function['method'], self._function['request'].format(**kwargs), data=data )
+        except KeyError as e:
+            raise invalidResourceOperationArgumentException( f'{self._resource}.{self._name}: Missing arguments: {e.args}' )
 
-        return self._backend.request( self._function['method'], self._function['request'].format(**kwargs), data=data )
 
 class phpipamResource:
     def __init__(self, backend, resource):

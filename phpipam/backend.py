@@ -14,24 +14,6 @@ class apiObjectNotFoundException(Exception):
 
 class phpipamBackend:
     def __init__(self, api_url, app_id, api_user, api_password):
-        """
-        Parameters
-        ----------
-        api_url : str
-            URL of the phpIPAM instance. Example: https://phpipam.example.com/
-        app_id : str
-            AppID set in phpIPAM API settings
-        api_user : str
-            username, leave blank to use static token-authentication
-        api_password : str
-            user password or static auth token
-
-        Raises
-        ------
-        apiConnectionException
-            if the connection/authentification fails
-        """
-
         self.api_url = api_url.strip('/') + '/api/' + app_id
         self.api_user = api_user
         self.api_password = api_password
@@ -62,8 +44,6 @@ class phpipamBackend:
         return expiration < datetime.datetime.now()
 
     def request ( self, method, url, data = {} ):
-        """Wrapper for _req for checking result and only returning data"""
-
         if self._isTokenExpired():
             self._getApiToken()
 
