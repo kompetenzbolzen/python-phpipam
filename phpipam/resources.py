@@ -1,10 +1,11 @@
 from .backend import phpipamBackend
 
+# Custom functions are defined here
 resource_types = {
     'sections' : {
         'getSubnets':{
             'method':'GET',
-            'request':'/sections/{object_id}/subnets',
+            'request':'/sections/{section_id}/subnets',
         }
     },
     'subnets' : {
@@ -14,13 +15,41 @@ resource_types = {
         },
         'getIP':{
             'method':'GET',
-            'requests':'/subnets/'
-        }
+            'requests':'/subnets/{subnet_id}/addresses/{ip}/'
+        },
     },
     'addresses' : {
+        'getByIp':{
+            'method':'GET',
+            'request':'/addresses/{ip}/{subnet_id}/'
+        },
+        'search':{
+            'method':'GET',
+            'request':'/addresses/search/{ip}/'
+        },
+        'getFirstFree':{
+            'method':'GET',
+            'request':'/addresses/first_free/{subnet_id}/'
+        },
+        'createFirstFree':{
+            'method':'POST',
+            'request':'/addresses/first_free/{subnetId}/'
+        }
     },
+    'vlan':{},
+    'l2domains':{},
+    'vrf':{},
     'devices' : {
+        'getAddresses':{
+            'method':'GET',
+            'request':'/devices/{device_id}/addresses/'
+        },
+        'getSubnets':{
+            'method':'GET',
+            'request':'/devices/{device_id}/subnets/'
+        }
     },
+    'prefix':{},
 }
 
 class invalidResourceException(Exception):
@@ -64,6 +93,8 @@ class phpipamResource:
     def __getattr__(self, attr):
         return phpipamResourceFunction(self._backend, self._type, attr)
 
+    # Functions every ObjectType shares
+
     def get(self):
         """List of all objects"""
         return self._backend.request('GET', f'/{self._type}')
@@ -71,3 +102,12 @@ class phpipamResource:
     def byID(self, object_id):
         """object identified by object_id : str"""
         return self._backend.request('GET', f'/{self._type}/{object_id}')
+
+    def create(self, data):
+        return self._backend.request('POST', f'/{self._type}/{object_id}', data=data)
+
+    def edit(self, data):
+        return self._backend.request('PATCH', f'/{self._type}/{object_id}', data=data)
+
+    def delete(self, object_id):
+        return self._backend.request('DELETE', f'/{self._type}/{object_id}')
