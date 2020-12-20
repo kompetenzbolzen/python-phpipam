@@ -19,7 +19,7 @@ resource_types = {
         },
     },
     'addresses' : {
-        'getByIp':{
+        'getByIP':{
             'method':'GET',
             'request':'/addresses/{ip}/{subnet_id}/'
         },
@@ -33,7 +33,7 @@ resource_types = {
         },
         'createFirstFree':{
             'method':'POST',
-            'request':'/addresses/first_free/{subnetId}/'
+            'request':'/addresses/first_free/{subnet_id}/'
         }
     },
     'vlan':{},
