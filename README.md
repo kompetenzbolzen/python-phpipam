@@ -7,7 +7,7 @@ Refer to the [API Doc](https://phpipam.net/api-documentation/) for data layout.
 ```
 import phpipam
 
-ipam = phpipam.phpipam("https://phpipam.example.com/", "myapp", "apiuser", "p4s5word")
+ipam = phpipam.PhpipamAPI("https://phpipam.example.com/", "myapp", "apiuser", "p4s5word")
 ```
 
 Usage:

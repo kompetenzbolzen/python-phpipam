@@ -1,7 +1,7 @@
-from .backend import phpipamBackend
-from .resources import phpipamResource
+from .backend import PhpipamBackend
+from .resources import PhpipamResource
 
-class phpipam:
+class PhpipamAPI:
     """
     phpIPAM API Implementation
 
@@ -29,7 +29,7 @@ class phpipam:
             password or static authentification token
         """
 
-        self._backend = phpipamBackend(api_url, app_id, api_user, api_password)
+        self._backend = PhpipamBackend(api_url, app_id, api_user, api_password)
 
     def __getattr__(self, item):
-        return phpipamResource(self._backend, item)
+        return PhpipamResource(self._backend, item)

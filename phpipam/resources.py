@@ -1,4 +1,4 @@
-from .backend import phpipamBackend
+from .backend import PhpipamBackend
 
 # Custom functions are defined here
 resource_types = {
@@ -52,19 +52,19 @@ resource_types = {
     'prefix':{},
 }
 
-class invalidResourceException(Exception):
+class InvalidResourceException(Exception):
     pass
 
-class invalidResourceOperationException(Exception):
+class InvalidResourceOperationException(Exception):
     pass
 
-class invalidResourceOperationArgumentException(Exception):
+class InvalidResourceOperationArgumentException(Exception):
     pass
 
-class phpipamResourceFunction:
+class PhpipamResourceFunction:
     def __init__(self, backend, resource, function):
         if not function in resource_types[resource]:
-            raise invalidResourceOperationException(f'Operation {function} is not defined for {resource}.')
+            raise InvalidResourceOperationException(f'Operation {function} is not defined for {resource}.')
 
         self._backend = backend
         self._resource = resource
@@ -79,19 +79,19 @@ class phpipamResourceFunction:
         try:
             return self._backend.request( self._function['method'], self._function['request'].format(**kwargs), data=data )
         except KeyError as e:
-            raise invalidResourceOperationArgumentException( f'{self._resource}.{self._name}: Missing arguments: {e.args}' )
+            raise InvalidResourceOperationArgumentException( f'{self._resource}.{self._name}: Missing arguments: {e.args}' )
 
 
-class phpipamResource:
+class PhpipamResource:
     def __init__(self, backend, resource):
         if not resource in resource_types:
-            raise invalidResourceException(f'Invalid resource "{resource}"')
+            raise InvalidResourceException(f'Invalid resource "{resource}"')
 
         self._type = resource
         self._backend = backend
 
     def __getattr__(self, attr):
-        return phpipamResourceFunction(self._backend, self._type, attr)
+        return PhpipamResourceFunction(self._backend, self._type, attr)
 
     # Functions every ObjectType shares
 

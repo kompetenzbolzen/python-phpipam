@@ -3,16 +3,16 @@ import json
 import datetime
 from dateutil.parser import parse as datetime_parse
 
-class apiConnectionException(Exception):
+class ApiConnectionException(Exception):
     pass
 
-class apiQueryException(Exception):
+class ApiQueryException(Exception):
     pass
 
-class apiObjectNotFoundException(Exception):
+class ApiObjectNotFoundException(Exception):
     pass
 
-class phpipamBackend:
+class PhpipamBackend:
     def __init__(self, api_url, app_id, api_user, api_password):
         self.api_url = api_url.strip('/') + '/api/' + app_id
         self.api_user = api_user
@@ -28,7 +28,7 @@ class phpipamBackend:
     def _getApiToken(self):
         data = requests.post(self.api_url + "/user", auth=(self.api_user,self.api_password)).json()
         if not data['success']:
-            raise apiConnectionException('Failed to authenticate: ' + str(data['code']))
+            raise ApiConnectionException('Failed to authenticate: ' + str(data['code']))
 
         self.api_token = data['data']['token']
         self.api_token_expires = data['data']['expires']
@@ -50,7 +50,7 @@ class phpipamBackend:
         data = requests.request(method, self.api_url + url, data=data, headers={'token':self.api_token}).json()
 
         if not 'success' in data or not data['success']:
-            raise apiQueryException("Query failed with code " + str(data['code']) + ": " + str(data['message']))
+            raise ApiQueryException("Query failed with code " + str(data['code']) + ": " + str(data['message']))
 
         return data['data']
 
