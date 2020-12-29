@@ -3,12 +3,13 @@ import setuptools
 
 setup(
     name='phpipam',
-    version='0.0.0-dev',
+    version='0.1.0',
     author="Jonas Gunz",
     description="phpIPAM API implementation",
     packages=['phpipam'],
     install_requires=[
-        "requests>=2.25.1"
+        "requests>=2.25.1",
+        "dateutil>=2.8.1"
     ],
     license='MIT',
     long_description=open('README.md').read(),
