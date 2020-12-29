@@ -9,7 +9,7 @@ setup(
     packages=['phpipam'],
     install_requires=[
         "requests>=2.25.1",
-        "dateutil>=2.8.1"
+        "python-dateutil>=2.8.1"
     ],
     license='MIT',
     long_description=open('README.md').read(),
