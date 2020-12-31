@@ -28,7 +28,7 @@ class PhpipamBackend:
     def _getApiToken(self):
         data = requests.post(self.api_url + "/user", auth=(self.api_user,self.api_password)).json()
         if not data['success']:
-            raise ApiConnectionException('Failed to authenticate: ' + str(data['code']))
+            raise ApiConnectionException('Failed to authenticate: ' + str(data['code']) + ' ' + data['message'])
 
         self.api_token = data['data']['token']
         self.api_token_expires = data['data']['expires']

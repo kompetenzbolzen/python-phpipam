@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name='phpipam',
-    version='0.2.0',
+    version='0.2.1',
     author="Jonas Gunz",
     description="phpIPAM API implementation",
     packages=['phpipam'],
