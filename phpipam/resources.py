@@ -15,13 +15,21 @@ resource_types = {
         },
         'getIP':{
             'method':'GET',
-            'requests':'/subnets/{subnet_id}/addresses/{ip}/'
+            'request':'/subnets/{subnet_id}/addresses/{ip}/'
+        },
+        'getAddresses':{
+            'method':'GET',
+            'request':'/subnets/{subnet_id}/addresses/'
         },
     },
     'addresses' : {
         'getByIP':{
             'method':'GET',
             'request':'/addresses/{ip}/{subnet_id}/'
+        },
+        'getByTag':{
+            'method':'GET',
+            'request':'/addresses/tags/{tag_id}/addresses/'
         },
         'search':{
             'method':'GET',
@@ -30,6 +38,14 @@ resource_types = {
         'getFirstFree':{
             'method':'GET',
             'request':'/addresses/first_free/{subnet_id}/'
+        },
+        'getTags':{
+            'method':'GET',
+            'request':'/addresses/tags/'
+        },
+        'getTag':{
+            'method':'GET',
+            'request':'/addresses/tags/{tag_id}/'
         },
         'createFirstFree':{
             'method':'POST',

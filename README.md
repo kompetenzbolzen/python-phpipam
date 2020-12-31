@@ -35,12 +35,16 @@ If an error is encountered, an exception is raised.
 
 * `search(search=<query>)` search for subnet by CIDR
 * `getIP(subnet_id=<subnet id>, ip=<ip>)` get address object from subnet by IP
+* `getAddresses(subnet_id=<subnet id>)` get all addresses in subnet
 
 ### addresses
 
 * `getByIP(subnet_id=<subnet id>, ip=<ip>)`
+* `getByTag(tag_id=<tag id>)`
 * `search(ip=<ip>)`
 * `getFirstFree(subnet_id=<subnet id>)`
+* `getTags()`
+* `getTag(tag_id=<tag id>)`
 * `createFirstFree(subnet_id=<subnet id>)`
 
 ### vlan
