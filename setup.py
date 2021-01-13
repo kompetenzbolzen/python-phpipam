@@ -5,6 +5,7 @@ setup(
     name='phpipam',
     version='0.2.1',
     author="Jonas Gunz",
+    author_email="himself@jonasgunz.de",
     description="phpIPAM API implementation",
     packages=['phpipam'],
     install_requires=[
