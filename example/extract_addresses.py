@@ -5,7 +5,7 @@
 # License: MIT
 #
 
-import phpipam
+import phpipam_api
 import re
 
 phpipam_url="https://phpipam.example.com/"
