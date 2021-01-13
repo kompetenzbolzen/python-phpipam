@@ -17,7 +17,7 @@ tag='Used'
 domain='sub.example.com.'
 cidrs=['10.1.0.0/16','192.168.42.0/24']
 
-ipam = phpipam.PhpipamAPI(phpipam_url, appid, user, passw)
+ipam = phpipam_api.PhpipamAPI(phpipam_url, appid, user, passw)
 
 tags = ipam.addresses.getTags()
 for _tag in tags:
