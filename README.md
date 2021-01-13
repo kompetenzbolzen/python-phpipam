@@ -1,13 +1,13 @@
-# phpipam
+# phpipam-api
 
 An incomplete phpIPAM API implementation in python.
 
 Refer to the [API Doc](https://phpipam.net/api-documentation/) for data layout.
 
 ```
-import phpipam
+import phpipam_api
 
-ipam = phpipam.PhpipamAPI("https://phpipam.example.com/", "myapp", "apiuser", "p4s5word")
+ipam = phpipam_api.PhpipamAPI("https://phpipam.example.com/", "myapp", "apiuser", "p4s5word")
 ```
 
 Usage:
