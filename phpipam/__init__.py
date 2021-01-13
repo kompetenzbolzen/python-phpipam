@@ -1,3 +1,8 @@
+#
+# phpipam/__init__.py
+# (c) 2021 Jonas Gunz <himself@jonasgunz.de>
+# License: MIT
+#
 from .backend import PhpipamBackend
 from .resources import PhpipamResource
 

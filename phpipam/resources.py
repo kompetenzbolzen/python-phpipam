@@ -1,3 +1,8 @@
+#
+# phpipam/resources.py
+# (c) 2021 Jonas Gunz <himself@jonasgunz.de>
+# License: MIT
+#
 from .backend import PhpipamBackend
 
 # Custom functions are defined here

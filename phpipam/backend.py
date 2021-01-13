@@ -1,3 +1,8 @@
+#
+# phpipam/backend.py
+# (c) 2021 Jonas Gunz <himself@jonasgunz.de>
+# License: MIT
+#
 import requests
 import json
 import datetime
