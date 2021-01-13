@@ -2,8 +2,6 @@
 
 An incomplete phpIPAM API implementation in python.
 
-Refer to the [API Doc](https://phpipam.net/api-documentation/) for data layout.
-
 ```
 import phpipam_api
 
@@ -17,9 +15,12 @@ data = ipam.<controller>.<operation>(<arguments>)
 ```
 
 All functions return a dictionary object or a list of dictionary objects.
+Refer to the [API Doc](https://phpipam.net/api-documentation/) for data layout.
 If an error is encountered, an exception is raised.
 
 ## Controllers
+
+Functions shared by all controllers:
 
 * `get()` returns all obejcts in in controller
 * `byID(object_id=<object id>)` get specific obejct by ID
@@ -61,9 +62,9 @@ If an error is encountered, an exception is raised.
 ### prefix
 
 
-requires
+## requires
 
-	dateutil
-	requests
+* `dateutil`
+* `requests`
 
 License: MIT
