@@ -127,7 +127,7 @@ class PhpipamResource:
     def create(self, data):
         return self._backend.request('POST', f'/{self._type}/{object_id}', data=data)
 
-    def edit(self, data):
+    def edit(self, object_id, data):
         return self._backend.request('PATCH', f'/{self._type}/{object_id}', data=data)
 
     def delete(self, object_id):
