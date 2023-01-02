@@ -20,7 +20,7 @@ class PhpipamAPI:
     https://phpipam.net/api-documentation/
     """
 
-    def __init__(self, api_url, app_id, api_user, api_password):
+    def __init__(self, api_url, app_id, api_user, api_password, verify=False):
         """
         Parameters
         ----------
@@ -32,9 +32,11 @@ class PhpipamAPI:
             username, leave empty to use static token authentification
         api_password : str
             password or static authentification token
+        verify : Bool (optional)
+            verify API server SSL certificate
         """
 
-        self._backend = PhpipamBackend(api_url, app_id, api_user, api_password)
+        self._backend = PhpipamBackend(api_url, app_id, api_user, api_password, verify)
 
     def __getattr__(self, item):
         return PhpipamResource(self._backend, item)

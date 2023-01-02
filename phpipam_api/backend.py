@@ -18,7 +18,7 @@ class ApiObjectNotFoundException(Exception):
     pass
 
 class PhpipamBackend:
-    def __init__(self, api_url, app_id, api_user, api_password, verify=True):
+    def __init__(self, api_url, app_id, api_user, api_password, verify):
         self.api_url = api_url.strip('/') + '/api/' + app_id
         self.api_user = api_user
         self.api_password = api_password
