@@ -20,7 +20,7 @@ class PhpipamAPI:
     https://phpipam.net/api-documentation/
     """
 
-    def __init__(self, api_url, app_id, api_user, api_password, verify=False):
+    def __init__(self, api_url, app_id, api_user, api_password, verify=True):
         """
         Parameters
         ----------
