@@ -24,7 +24,7 @@ Functions shared by all controllers:
 
 * `get()` returns all obejcts in in controller
 * `byID(object_id=<object id>)` get specific obejct by ID
-* `create(data=<data>)`
+* `create(object_id=<object id>, data=<data>)`
 * `edit(object_id=<object id>, data=<data>)`
 * `delete(object_id=<object id>)`
 

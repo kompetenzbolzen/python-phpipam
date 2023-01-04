@@ -124,7 +124,7 @@ class PhpipamResource:
         """object identified by object_id : str"""
         return self._backend.request('GET', f'/{self._type}/{object_id}')
 
-    def create(self, data):
+    def create(self, object_id, data):
         return self._backend.request('POST', f'/{self._type}/{object_id}', data=data)
 
     def edit(self, object_id, data):
