@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name='phpipam-api',
-    version='1.0.0',
+    version='1.1.0',
     author="Jonas Gunz",
     author_email="himself@jonasgunz.de",
     url="https://github.com/kompetenzbolzen/python-phpipam",
