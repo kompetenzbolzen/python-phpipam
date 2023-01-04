@@ -18,10 +18,11 @@ class ApiObjectNotFoundException(Exception):
     pass
 
 class PhpipamBackend:
-    def __init__(self, api_url, app_id, api_user, api_password):
+    def __init__(self, api_url, app_id, api_user, api_password, verify):
         self.api_url = api_url.strip('/') + '/api/' + app_id
         self.api_user = api_user
         self.api_password = api_password
+        self.verify = verify
 
         # Check for static auth
         if len(self.api_user) == 0:
@@ -31,7 +32,7 @@ class PhpipamBackend:
             self._getApiToken()
 
     def _getApiToken(self):
-        data = requests.post(self.api_url + "/user", auth=(self.api_user,self.api_password)).json()
+        data = requests.post(self.api_url + "/user", auth=(self.api_user,self.api_password), verify=self.verify).json()
         if not data['success']:
             raise ApiConnectionException('Failed to authenticate: ' + str(data['code']) + ' ' + data['message'])
 
@@ -52,10 +53,11 @@ class PhpipamBackend:
         if self._isTokenExpired():
             self._getApiToken()
 
-        data = requests.request(method, self.api_url + url, data=data, headers={'token':self.api_token}).json()
+        data = requests.request(method, self.api_url + url, data=data, headers={'token':self.api_token}, verify=self.verify).json()
 
         if not 'success' in data or not data['success']:
             raise ApiQueryException("Query failed with code " + str(data['code']) + ": " + str(data['message']))
-
-        return data['data']
+        if 'data' in data:
+            return data['data']
+        return data
 
